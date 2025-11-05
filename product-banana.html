@@ -37,9 +37,10 @@
       <div class="content-box">
         <div class="emoji-display" role="img" aria-label="Banana emoji">🍌</div>
         <h1>Banana</h1>
-        <div class="product-desc" aria-label="Product description">
+                <div class="product-desc" aria-label="Product description">
           Nature's energy bar. Also, monkeys approve!
         </div>
+        <div id="errorMsg" style="display:none; color:#e53935; margin-bottom:0.8rem;"></div>
         <div class="button-container">
           <button
             id="addToBasket"
@@ -49,12 +50,27 @@
             Add to Basket
           </button>
         </div>
+
       </div>
     </main>
     <footer>
       <a
         href="https://www.linkedin.com/in/timlolkema/"
         target="_blank"
+        rel="noopener noreferrer"
+      >
+        By Tim Lolkema
+      </a>
+    </footer>
+    <script src="shop.js"></script>
+    <script>
+      document.getElementById("addToBasket").onclick = function () {
+        addToBasket("banana");
+      };
+    </script>
+  </body>
+</html>
+
         rel="noopener noreferrer"
       >
         By Tim Lolkema
