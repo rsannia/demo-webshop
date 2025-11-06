@@ -48,16 +48,28 @@ function renderBasket() {
     if (cartButtonsRow) cartButtonsRow.style.display = "none";
     return;
   }
+  // Group identical products and preserve first-seen order
+  const counts = {};
+  const order = [];
   basket.forEach((product) => {
-    const item = PRODUCTS[product];
-    if (item) {
-      const li = document.createElement("li");
-      li.innerHTML = `<span class='basket-emoji'>${item.emoji}</span> <span>${item.name}</span>`;
-      basketList.appendChild(li);
+    if (!PRODUCTS[product]) return;
+    if (!counts[product]) {
+      counts[product] = 1;
+      order.push(product);
+    } else {
+      counts[product] += 1;
     }
+  });
+  order.forEach((product) => {
+    const item = PRODUCTS[product];
+    const qty = counts[product];
+    const li = document.createElement("li");
+    li.innerHTML = `<span class='basket-emoji'>${item.emoji}</span> <span>${qty}x ${item.name}</span>`;
+    basketList.appendChild(li);
   });
   if (cartButtonsRow) cartButtonsRow.style.display = "flex";
 }
+
 
 function renderBasketIndicator() {
   const basket = getBasket();
